@@ -1,21 +1,31 @@
 package main
 
-import "fmt"
-
-func input() string {
-	var i string
-	fmt.Scanln(&i)
-	return i
-}
-
-func inputN() int {
-	var n int
-	fmt.Scanln(&n)
-	return n
-}
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
-	fmt.Println("Type something: ")
-	n := inputN()
-	fmt.Println("You typed", n)
+	i := 0
+	for {
+		fmt.Println("zzz", i)
+		time.Sleep(time.Second)
+		i++
+		if i >= 5 {
+			break
+		}
+	}
+
+	i = 0
+	for i < 5 {
+		fmt.Println("zzz", i)
+		time.Sleep(time.Second)
+		i++
+	}
+
+	for i := 0; i < 5; i++ {
+		fmt.Println("zzz", i)
+		time.Sleep(time.Second)
+	}
+
 }
