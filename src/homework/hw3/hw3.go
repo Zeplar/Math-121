@@ -26,15 +26,11 @@ func max_of_funcs(fn1 poly1, fn2 poly1) poly1 {
 }
 
 func evenX(x int) bool {
-	if x%2 == 0 {
-		return true
-	} else {
-		return false
-	}
+	return x%2 == 0
 }
 
 var is_even = func(x int) bool {
-	return evenX(x)
+	return x%2 == 0
 }
 
 func conditional_printchan(test poly2) poly1 {
