@@ -39,7 +39,10 @@ var is_even = func(x int) bool {
 
 func conditional_printchan(test poly2) poly1 {
 	return func(x int) int {
-		return x
+		if test(x) == true {
+			return x
+		}
+		fmt.Println(x)
 	}
 }
 
