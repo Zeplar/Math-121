@@ -33,12 +33,11 @@ var is_even = func(x int) bool {
 	return x%2 == 0
 }
 
-func conditional_printchan(test poly2) poly1 {
-	return func(x int) int {
+func conditional_printchan(test func(int) bool) func(int) {
+	return func(x int) {
 		if test(x) == true {
-			return x
+			fmt.Println(x)
 		}
-		fmt.Println(x)
 	}
 }
 
