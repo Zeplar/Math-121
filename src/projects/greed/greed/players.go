@@ -45,3 +45,5 @@ func NewSafePlayer(name string) Player {
 		},
 	}
 }
+
+// TODO: Implement a new player that you believe can beat the SafePlayer most of the time.

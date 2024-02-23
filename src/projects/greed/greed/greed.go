@@ -60,6 +60,7 @@ func Play(P1, P2 Player, loud bool) string {
 
 // scoreGame ouputs the winner of the game, or "Tie".
 func scoreGame(P1, P2 Player, loud bool) string {
+	// TODO: Print the winner if loud is true.
 	if P1.Score > P2.Score {
 		return P1.Name
 	} else if P2.Score > P1.Score {
