@@ -1,3 +1,3 @@
-module github.com/Granoia/mitchell-121.git
+module github.com/Zeplar/Math-121
 
-go 1.21.3
+go 1.21.6
