@@ -2,14 +2,15 @@ package greed
 
 import "math/rand"
 
+// A RollFn takes the player's score, the opponent's score, and whether it's the last round, and returns the number of dice to roll.
 type RollFn func(self, opponent int, lastRound bool) int
 
-type Player struct {
-	Name  string
-	Score int
-	// Roll takes the players' current scores and returns the number of dice to roll. lastRound is true if the opponent has passed.
-	Roll RollFn
-}
+// Possible outcomes of a game.
+const (
+	player1 = "Player 1"
+	player2 = "Player 2"
+	Tie     = "Tie"
+)
 
 // roll rolls the given number of D6 and returns the total.
 func roll(dice int) int {
@@ -22,35 +23,36 @@ func roll(dice int) int {
 
 // Play runs the game until a player wins, and outputs the winner's name.
 // If loud is true, it prints the game state after each turn.
-func Play(P1, P2 Player, loud bool) string {
-	lastRound := false
+func Play(P1, P2 RollFn, loud bool) string {
+	var score1, score2 int
+	var lastRound bool
 	for {
 		// TODO: Print the two scores if loud is true.
 
-		p1Dice := P1.Roll(P1.Score, P2.Score, lastRound)
-		P1.Score += roll(p1Dice)
+		p1Dice := P1(score1, score2, lastRound)
+		score1 += roll(p1Dice)
 		// TODO: Print the number of dice rolled, and the total, if loud is true.
 
-		if P1.Score > 100 {
-			return P2.Name
+		if score1 > 100 {
+			return player2
 		}
 		if lastRound {
-			return scoreGame(P1, P2, loud)
+			return determineWinner(score1, score2, loud)
 		}
 		if p1Dice == 0 {
 			lastRound = true
 		}
 
-		p2Dice := P2.Roll(P2.Score, P1.Score, lastRound)
-		P2.Score += roll(p2Dice)
+		p2Dice := P2(score2, score1, lastRound)
+		score2 += roll(p2Dice)
 		// TODO: Print the number of dice rolled, and the total, if loud is true.
 
-		if P2.Score > 100 {
-			return P1.Name
+		if score2 > 100 {
+			return player1
 		}
 
 		if lastRound {
-			return scoreGame(P1, P2, loud)
+			return determineWinner(score1, score2, loud)
 		}
 		if p2Dice == 0 {
 			lastRound = true
@@ -58,14 +60,13 @@ func Play(P1, P2 Player, loud bool) string {
 	}
 }
 
-// scoreGame ouputs the winner of the game, or "Tie".
-func scoreGame(P1, P2 Player, loud bool) string {
+func determineWinner(score1, score2 int, loud bool) string {
 	// TODO: Print the winner if loud is true.
-	if P1.Score > P2.Score {
-		return P1.Name
-	} else if P2.Score > P1.Score {
-		return P2.Name
+	if score1 > score2 {
+		return player1
+	} else if score2 > score1 {
+		return player2
 	} else {
-		return "Tie"
+		return Tie
 	}
 }
