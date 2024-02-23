@@ -35,7 +35,7 @@ func Play(P1, P2 Player, loud bool) string {
 			return P2.Name
 		}
 		if lastRound {
-			return scoreGame(P1, P2)
+			return scoreGame(P1, P2, loud)
 		}
 		if p1Dice == 0 {
 			lastRound = true
@@ -50,7 +50,7 @@ func Play(P1, P2 Player, loud bool) string {
 		}
 
 		if lastRound {
-			return scoreGame(P1, P2)
+			return scoreGame(P1, P2, loud)
 		}
 		if p2Dice == 0 {
 			lastRound = true
@@ -58,7 +58,8 @@ func Play(P1, P2 Player, loud bool) string {
 	}
 }
 
-func scoreGame(P1, P2 Player) string {
+// scoreGame ouputs the winner of the game, or "Tie".
+func scoreGame(P1, P2 Player, loud bool) string {
 	if P1.Score > P2.Score {
 		return P1.Name
 	} else if P2.Score > P1.Score {
