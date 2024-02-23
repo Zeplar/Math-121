@@ -17,7 +17,9 @@ func main() {
 /*
 	------- HOMEWORK ---------
 
-	Inside greed/greed.go, implement the TODO lines regarding the `loud` feature in the Play function.
+	Inside greed/greed.go, implement the TODO lines regarding the `loud` feature in the Play function. Test it by running a game between two SlowPlayers.
+
+	Inside greed/players.go, implement the Roll function for the SafePlayer.
 
 	Inside greed/players.go, implement a new player that you believe can beat the SafePlayer most of the time.
 

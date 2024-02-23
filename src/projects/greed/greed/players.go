@@ -28,7 +28,7 @@ func inputDice(name string) RollFn {
 	}
 }
 
-// NewHumanPlayer rolls dice according to user input.
+// HumanPlayer rolls dice according to user input.
 func NewHumanPlayer(name string) Player {
 	return Player{
 		Name: name,
@@ -36,13 +36,21 @@ func NewHumanPlayer(name string) Player {
 	}
 }
 
-// NewSafePlayer rolls the maximum number of dice that can be safely rolled without busting.
+// SlowPlayer rolls only one die each turn.
+func NewSlowPlayer(name string) Player {
+	return Player{
+		Name: name,
+		Roll: func(int, int, bool) int {
+			return 1
+		},
+	}
+}
+
+// SafePlayer rolls the maximum number of dice that can be safely rolled without busting (going over 100).
 func NewSafePlayer(name string) Player {
 	return Player{
 		Name: "Safe Player " + name,
-		Roll: func(self, _ int, _ bool) int {
-			return (100 - self) / 6
-		},
+		// TODO: Implement the Roll function for the SafePlayer.
 	}
 }
 
