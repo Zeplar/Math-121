@@ -7,11 +7,22 @@ import (
 )
 
 func main() {
-	p1 := greed.HumanPlayer("Mitchell")
-	p2 := greed.HumanPlayer("Josh")
-
-	winner := greed.Play(p1, p2, false)
-	fmt.Printf("The winner is %s\n", winner)
+	p1 := greed.SafePlayer
+	p2 := greed.Risky
+	win1 := 0
+	win2 := 0
+	tie := 0
+	for i := 0; i < 10000; i++ {
+		winner := greed.Play(p1, p2, false)
+		if winner == greed.Player1 {
+			win1++
+		} else if winner == greed.Player2 {
+			win2++
+		} else if winner == greed.Tie {
+			tie++
+		}
+	}
+	fmt.Println(win1, win2, tie)
 }
 
 /*

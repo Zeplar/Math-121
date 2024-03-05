@@ -35,7 +35,7 @@ var is_even = func(x int) bool {
 
 func conditional_printchan(test func(int) bool) func(int) {
 	return func(x int) {
-		if test(x) == true {
+		if test(x) {
 			fmt.Println(x)
 		}
 	}

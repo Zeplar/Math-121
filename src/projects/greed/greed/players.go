@@ -39,8 +39,15 @@ func SlowPlayer(int, int, bool) int {
 
 // SafePlayer rolls the maximum number of dice that can be safely rolled without busting (going over 100).
 func SafePlayer(self, opponent int, lastRound bool) int {
-	// TODO: Implement SafePlayer
-	return 0
+	return (100 - self) / 6
 }
 
 // TODO: Implement a new player that you believe can beat the SafePlayer most of the time.
+
+func Risky(self, opponent int, lastRound bool) int {
+	if self > opponent {
+		return (100 - self) / 6
+	} else {
+		return ((100 - self) / 6) + 1
+	}
+}
